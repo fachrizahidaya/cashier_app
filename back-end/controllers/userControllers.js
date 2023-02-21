@@ -20,6 +20,7 @@ module.exports = {
         username,
         email,
         password: hashPass,
+        isVerified: true
       });
       //   proses pengiriman token
       const token = jwt.sign({ username: username }, "riza");

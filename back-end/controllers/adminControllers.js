@@ -14,6 +14,7 @@ module.exports = {
         username,
         email,
         password: hashPass,
+        isAdmin: true,
       });
       const token = jwt.sign({ username: username }, "riza");
       res.status(200).send({
@@ -22,6 +23,7 @@ module.exports = {
         token,
       });
     } catch (err) {
+      console.log(err);
       res.status(400).send(err);
     }
   },

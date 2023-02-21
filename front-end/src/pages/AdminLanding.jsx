@@ -46,6 +46,7 @@ export default function AdminLandingPage() {
       console.log(err);
     }
   };
+  
   return (
     <Flex
       minH={"100vh"}
