@@ -90,7 +90,7 @@ export const ProductList = () => {
   return (
     <div>
       <Flex>
-        <TableContainer m={"auto"} maxW={"45%"}>
+        <TableContainer m={"auto"} maxW={"80%"}>
           <Table size="md">
             <Thead>
               <Tr>

@@ -25,129 +25,66 @@ import {
   CardFooter,
   SimpleGrid,
   Center,
+  Divider,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../redux/userSlice";
-
-const Links = ["Dashboard", "Projects", "Team"];
-
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
+import { NavbarUser } from "../components/NavbarUser";
+import { CategorySidebar } from "../components/CategorySidebar";
+import { TransactionSidebar } from "../components/TransactionSidebar";
+import { MenuUser } from "../components/MenuComp";
 
 export const HomePage = () => {
-  const { username } = useSelector((state) => state.userSlice.value);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const onLogout = () => {
-    dispatch(logoutUser());
-    localStorage.removeItem("tokenUser");
-    navigate("/");
-  };
-
   return (
     <div>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={"center"}>
-            <Box><Image src="https://cdn-icons-png.flaticon.com/512/3225/3225051.png" w={"35px"}></Image></Box>
-            <HStack
-              as={"nav"}
-              spacing={4}
-              display={{ base: "none", md: "flex" }}
-            >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
-          </HStack>
-          <Flex alignItems={"center"}>
-            <Button
-              variant={"solid"}
-              colorScheme={"teal"}
-              size={"sm"}
-              mr={4}
-              // leftIcon={<AddIcon />}
-            >
-              {username}
-            </Button>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Profile</MenuItem>
-                {/* <MenuItem>Link 2</MenuItem> */}
-                <MenuDivider />
-                <MenuItem onClick={onLogout}>Logout</MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
-        </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : null}
-      </Box>
-      <Center>
-        <SimpleGrid
-          spacing={4}
-          templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+      <NavbarUser />
+      <Flex justifyContent={"space-around"}>
+        <Box
+          pos={"static"}
+          rounded={"sm"}
+          my={5}
+          h="fit-content"
+          mx={[0, 5]}
+          overflow={"hidden"}
+          bg="white"
+          // border={"1px"}
+          borderColor="black"
+          boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
         >
-          <Card>
-            <CardHeader>
-              <Heading size="md"> Customer dashboard</Heading>
-            </CardHeader>
-            <CardBody>
-              <Text>
-                View a summary of all your customers over the last month.
-              </Text>
-            </CardBody>
-            <CardFooter>
-              <Button>Add to Cart</Button>
-            </CardFooter>
-          </Card>
-        </SimpleGrid>
-      </Center>
-      <FooterComp />
+          <CategorySidebar />
+        </Box>
+
+        <Box
+          w={"685px"}
+          rounded={"sm"}
+          my={5}
+          mx={[0, 5]}
+          overflow={"hidden"}
+          bg="white"
+          // border={"1px"}
+          borderColor="black"
+          boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
+        >
+          <MenuUser />
+        </Box>
+
+        <Box
+          w={"300px"}
+          rounded={"sm"}
+          my={5}
+          mx={[0, 5]}
+          overflow={"hidden"}
+          h="fit-content"
+          bg="white"
+          // border={"1px"}
+          borderColor="black"
+          boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
+        >
+          <TransactionSidebar />
+        </Box>
+      </Flex>
     </div>
   );
 };

@@ -65,8 +65,7 @@ export default function NavbarAdmin() {
             ></Image>
           </Flex>
           <HStack spacing={"20px"}>
-            <Text>Product</Text>
-            <Text>Category</Text>
+            <Text>Transaction</Text>
           </HStack>
 
           <Flex alignItems={"center"}>
