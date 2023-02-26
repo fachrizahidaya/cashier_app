@@ -19,8 +19,14 @@ export const userSlice = createSlice({
     logoutUser: (state, action) => {
       state.value.username = "";
     },
+    addCart: (state) => {
+      state.value.cart += 1;
+    },
+    delCart: (state) => {
+      state.value.cart -= 1;
+    },
   },
 });
 
-export const { loginUser, logoutUser } = userSlice.actions;
+export const { loginUser, logoutUser, addCart, delCart } = userSlice.actions;
 export default userSlice.reducer;

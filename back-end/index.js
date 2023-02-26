@@ -12,10 +12,17 @@ server.use(bearerToken());
 
 server.use("/Public", express.static(path.join(__dirname, "./Public")));
 
-const { userRouters, adminRouters, itemRouters } = require("./routers");
+const {
+  userRouters,
+  adminRouters,
+  itemRouters,
+  transactionRouters,
+} = require("./routers");
+
 server.use("/user", userRouters);
 server.use("/admin", adminRouters);
 server.use("/item", itemRouters);
+server.use("/transaction", transactionRouters);
 
 server.listen(PORT, () => {
   // db.sequelize.sync({ alter: true });

@@ -57,7 +57,7 @@ export const TransactionSidebar = () => {
                 >
                   -
                 </Button>
-                <Text w={"10px"}>{/* {item.qty} */}2</Text>
+                <Text w={"10px"}>{/* {item.qty} */}</Text>
                 <Button
                   pb={"4"}
                   variant={"unstyled"}
