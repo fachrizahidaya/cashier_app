@@ -18,7 +18,7 @@ export const TransactionList = () => {
           mx={[0, 5]}
           overflow={"hidden"}
           bg="white"
-        //   border={"1px"}
+          //   border={"1px"}
           borderColor="black"
           boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
         >
@@ -32,7 +32,7 @@ export const TransactionList = () => {
           mx={[0, 5]}
           overflow={"hidden"}
           bg="white"
-        //   border={"1px"}
+          //   border={"1px"}
           borderColor="black"
           boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
         >
