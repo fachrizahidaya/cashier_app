@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../redux/userSlice";
+import Swal from "sweetalert2";
 const url = `http://localhost:2000/user/login`;
 
 export const CashierLanding = () => {
@@ -37,12 +38,17 @@ export const CashierLanding = () => {
       const result = await Axios.post(url, user);
       dispatch(
         loginUser({
+          id: result.data.isUserExist.id,
           username: result.data.isUserExist.username,
         })
       );
       localStorage.setItem("tokenUser", result.data.token);
       navigate("/home");
     } catch (err) {
+      Swal.fire({
+        icon: "error",
+        text: "User Not Found or Password Incorrect",
+      });
       console.log(err);
     }
   };

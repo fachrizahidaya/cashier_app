@@ -17,12 +17,9 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { loginAdmin } from "../redux/adminSlice";
-
-const url = `http://localhost:2000/admin/login`;
+import Swal from "sweetalert2";
 
 export default function AdminLandingPage() {
-  // const {username} = useSelector((state) => state.adminSlice.value);
-  // const tokenLocalStorage = localStorage.getItem("tokenAdmin");
   const dispatch = useDispatch();
   const inputUsername = useRef("");
   const inputPass = useRef("");
@@ -34,7 +31,10 @@ export default function AdminLandingPage() {
         username: inputUsername.current.value,
         password: inputPass.current.value,
       };
-      const result = await Axios.post(url, admin);
+      const result = await Axios.post(
+        `http://localhost:2000/admin/login`,
+        admin
+      );
       dispatch(
         loginAdmin({
           username: result.data.isUserExist.username,
@@ -43,10 +43,14 @@ export default function AdminLandingPage() {
       localStorage.setItem("tokenAdmin", result.data.token);
       navigate("/adminHome");
     } catch (err) {
+      Swal.fire({
+        icon: "error",
+        text: "User Not Found or Password Incorrect",
+      });
       console.log(err);
     }
   };
-  
+
   return (
     <Flex
       minH={"100vh"}

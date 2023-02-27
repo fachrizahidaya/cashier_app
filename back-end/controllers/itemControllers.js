@@ -2,6 +2,7 @@ const db = require("../models");
 const item = db.Item;
 const category = db.Category;
 const productCategory = db.Product_Category;
+const cart = db.Cart;
 
 module.exports = {
   addCategory: async (req, res) => {
@@ -50,7 +51,10 @@ module.exports = {
     try {
       const data = await item.findAll({
         attributes: ["id", "name", "price", "picture"],
-        include: [{ model: productCategory, include: [{ model: category }] }],
+        include: [
+          { model: productCategory, include: [{ model: category }] },
+          { model: cart },
+        ],
       });
       res.status(200).send(data);
     } catch (err) {

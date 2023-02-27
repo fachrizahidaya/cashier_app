@@ -15,7 +15,6 @@ function App() {
   const dispatch = useDispatch();
   const tokenAdmin = localStorage.getItem("tokenAdmin");
   const tokenUser = localStorage.getItem("tokenUser");
-  const { username } = useSelector((state) => state.adminSlice.value);
 
   const keepLoginAdmin = async () => {
     try {
@@ -26,6 +25,7 @@ function App() {
       });
       dispatch(
         loginAdmin({
+          id: admin.data.id,
           username: admin.data.username,
         })
       );
@@ -43,6 +43,7 @@ function App() {
       });
       dispatch(
         loginUser({
+          id: user.data.id,
           username: user.data.username,
         })
       );

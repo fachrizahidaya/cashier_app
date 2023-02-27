@@ -75,17 +75,12 @@ export const NavbarUser = () => {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              <Button variant={"ghost"}>Transaction</Button>
+              <Button variant={"ghost"}>Create</Button>
+              <Button variant={"ghost"}>List</Button>
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <Button
-              variant={"solid"}
-              colorScheme={"teal"}
-              size={"sm"}
-              mr={4}
-              // leftIcon={<AddIcon />}
-            >
+            <Button variant={"solid"} colorScheme={"teal"} size={"sm"} mr={4}>
               {username}
             </Button>
             <Menu>
@@ -113,7 +108,7 @@ export const NavbarUser = () => {
           </Flex>
         </Flex>
 
-        {isOpen ? (
+        {/* {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
@@ -121,7 +116,7 @@ export const NavbarUser = () => {
               ))}
             </Stack>
           </Box>
-        ) : null}
+        ) : null} */}
       </Box>
     </div>
   );

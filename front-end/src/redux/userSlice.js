@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // awal isi dari form register
 const initialState = {
   value: {
+    id: 0,
     username: "",
     email: "",
     password: "",
@@ -15,6 +16,7 @@ export const userSlice = createSlice({
   reducers: {
     loginUser: (state, action) => {
       state.value.username = action.payload.username;
+      state.value.id = action.payload.id;
     },
     logoutUser: (state, action) => {
       state.value.username = "";

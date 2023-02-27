@@ -23,7 +23,7 @@ export const CategorySidebar = () => {
       <FormLabel>Category</FormLabel>
       <Stack>
         {data?.map((item) => {
-          return <Button>{item.name}</Button>;
+          return <Button variant={"ghost"}>{item.name}</Button>;
         })}
       </Stack>
     </div>
