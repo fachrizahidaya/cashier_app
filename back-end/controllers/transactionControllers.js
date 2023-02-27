@@ -2,6 +2,7 @@ const db = require("../models");
 const cart = db.Cart;
 const transaction = db.Transaction;
 const item = db.Item;
+const transactionDetail = db.Transaction_Detail;
 
 module.exports = {
   create: async (req, res) => {
@@ -156,12 +157,70 @@ module.exports = {
       let year = date.getFullYear();
       const order = await transaction.findAll({});
       const order_no = `C-${year}${order.length + 1}`;
-      const { totalOrder, invoice_no, UserId } = req.body;
+      const { totalOrder, UserId } = req.body;
       const data = await transaction.create({
         totalOrder,
         UserId,
         invoice_no: order_no,
       });
+      console.log(data);
+      const response = await cart.findAll({
+        where: [{ UserId: req.params.id }],
+        include: [{ model: item }],
+      });
+      console.log(response);
+      response.map(async (item) => {
+        item.dataValues;
+        await transactionDetail.create({
+          TransactionInvoiceNo: data.invoice_no,
+          ItemId: item.dataValues.ItemId,
+          totalCheckout: item.dataValues.totalCheckout,
+          qty: item.dataValues.qty,
+        });
+      });
+
+      response.map(async (item) => {
+        await cart.destroy({
+          where: {
+            id: item.dataValues.id,
+          },
+        });
+      });
+      res.status(200).send(response);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  },
+
+  findOrderByUser: async (req, res) => {
+    try {
+      const data = await transaction.findAll(
+        {
+          where: {
+            UserId: req.params.id,
+          },
+          include: [{ model: transactionDetail }],
+        },
+        {
+        }
+      );
+      res.status(200).send(data);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  },
+
+  findProductByOrder: async (req, res) => {
+    try {
+      const data = await transactionDetail.findAll({
+        where: {
+          TransactionInvoiceNo: req.body,
+        },
+        include: [{ model: item }],
+      });
+      res.status(200).send(data);
     } catch (err) {
       res.status(400).send(err);
     }

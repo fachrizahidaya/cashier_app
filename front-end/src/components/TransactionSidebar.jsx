@@ -14,13 +14,15 @@ import {
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import { cartSync } from "../redux/cartSlice";
 import { delCart } from "../redux/userSlice";
 
 export const TransactionSidebar = () => {
   const { id } = useSelector((state) => state.userSlice.value);
   const [qty, setQty] = useState(false);
-  const [data2, setData2] = useState();
+  const [data2, setData2] = useState(0);
+  const [data3, setData3] = useState();
   const data = useSelector((state) => state.cartSlice.value);
   const dispatch = useDispatch();
 
@@ -30,6 +32,7 @@ export const TransactionSidebar = () => {
         `http://localhost:2000/transaction/findBy/${id}`
       );
       console.log(result.data);
+      setData3(result.data);
       dispatch(cartSync(result.data));
       const selectedItem = result.data
         .map((item3) => item3.totalCheckout)
@@ -76,19 +79,42 @@ export const TransactionSidebar = () => {
     }
   };
 
+  const onCreate = async () => {
+    try {
+      const create = {
+        totalOrder: data2,
+        UserId: id,
+        ItemId: data3[0]?.ItemId,
+      };
+      const result = await Axios.post(
+        `http://localhost:2000/transaction/createOrder/${id}`,
+        create
+      );
+      Swal.fire({
+        icon: "success",
+        text: `Success`,
+        timer: 2000,
+      });
+      setTimeout(() => window.location.replace("/home"), 900);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <Flex justifyContent={"space-between"}>
         <FormLabel>Total Belanja</FormLabel>
         <FormLabel>
-          {" "}
           {new Intl.NumberFormat("IND", {
             style: "currency",
             currency: "IDR",
           }).format(data2)}
         </FormLabel>
       </Flex>
-      <Button w={"full"}>Pay</Button>
+      <Button onClick={() => onCreate()} w={"full"}>
+        Pay
+      </Button>
       <Stack>
         <Box boxShadow={"2xl"}>
           {data?.map((item2) => {

@@ -52,6 +52,14 @@ export const NavbarUser = () => {
     navigate("/");
   };
 
+  const toCreate = () => {
+    navigate("/home");
+  };
+
+  const toList = () => {
+    navigate("/list");
+  };
+
   return (
     <div>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -75,8 +83,12 @@ export const NavbarUser = () => {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              <Button variant={"ghost"}>Create</Button>
-              <Button variant={"ghost"}>List</Button>
+              <Button onClick={toCreate} variant={"ghost"}>
+                Create
+              </Button>
+              <Button onClick={toList} variant={"ghost"}>
+                List
+              </Button>
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
