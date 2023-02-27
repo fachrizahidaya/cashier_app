@@ -1,3 +1,4 @@
+const { Sequelize } = require("sequelize");
 const db = require("../models");
 const cart = db.Cart;
 const transaction = db.Transaction;
@@ -193,6 +194,15 @@ module.exports = {
     }
   },
 
+  findAllOrder: async (req, res) => {
+    try {
+      const data = await transaction.findAll({});
+      res.status(200).send(data);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  },
+
   findOrderByUser: async (req, res) => {
     try {
       const data = await transaction.findAll(
@@ -202,8 +212,7 @@ module.exports = {
           },
           include: [{ model: transactionDetail }],
         },
-        {
-        }
+        {}
       );
       res.status(200).send(data);
     } catch (err) {
@@ -222,6 +231,23 @@ module.exports = {
       });
       res.status(200).send(data);
     } catch (err) {
+      res.status(400).send(err);
+    }
+  },
+
+  findTotalByDate: async (req, res) => {
+    try {
+      const data = await transaction.findAll({
+        attributes: [
+          "createdAt",
+          [Sequelize.fn("sum", Sequelize.col("totalOrder")), "total"],
+        ],
+        group: ["createdAt"],
+      });
+      console.log(data);
+      res.status(200).send(data);
+    } catch (err) {
+      console.log(err);
       res.status(400).send(err);
     }
   },

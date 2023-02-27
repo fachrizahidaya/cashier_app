@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 export const ListComp = () => {
   const [data, setData] = useState();
   const { id } = useSelector((state) => state.userSlice.value);
+  
   const getAll = async () => {
     try {
       const result = await Axios.get(

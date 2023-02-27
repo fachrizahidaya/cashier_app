@@ -41,7 +41,7 @@ export default function AdminLandingPage() {
         })
       );
       localStorage.setItem("tokenAdmin", result.data.token);
-      navigate("/adminHome");
+      navigate("/admin-home");
     } catch (err) {
       Swal.fire({
         icon: "error",

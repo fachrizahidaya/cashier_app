@@ -9,6 +9,7 @@ import { loginAdmin } from "./redux/adminSlice";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { TransactionList } from "./pages/TransactionList";
+import { AdminTransaction } from "./pages/AdminTransaction";
 const url1 = `http://localhost:2000/admin/keepLogin`;
 const url2 = `http://localhost:2000/user/keepLogin`;
 
@@ -73,7 +74,8 @@ function App() {
         <Route path="/home" element={<HomePage />}></Route>
         <Route path="/list" element={<TransactionList />}></Route>
         <Route path="/admin" element={<AdminLandingPage />}></Route>
-        <Route path="/adminHome" element={<AdminPage />}></Route>
+        <Route path="/admin-home" element={<AdminPage />}></Route>
+        <Route path="/admin-transaction" element={<AdminTransaction />}></Route>
       </Routes>
     </div>
   );

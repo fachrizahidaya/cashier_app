@@ -22,7 +22,7 @@ export const TransactionList = () => {
           borderColor="black"
           boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
         >
-          <ListSidebar />
+          {/* <ListSidebar /> */}
         </Box>
 
         <Box

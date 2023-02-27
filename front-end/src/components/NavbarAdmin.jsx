@@ -39,6 +39,14 @@ export default function NavbarAdmin() {
     navigate("/admin");
   };
 
+  const toInventory = () => {
+    navigate("/admin-home");
+  };
+
+  const toTransaction = () => {
+    navigate("/admin-transaction");
+  };
+
   const NavLink = ({ children }) => (
     <Link
       px={2}
@@ -65,7 +73,12 @@ export default function NavbarAdmin() {
             ></Image>
           </Flex>
           <HStack spacing={"20px"}>
-            <Button variant={"ghost"}>Transaction</Button>
+            <Button onClick={toInventory} variant={"ghost"}>
+              Inventory
+            </Button>
+            <Button onClick={toTransaction} variant={"ghost"}>
+              Transaction
+            </Button>
           </HStack>
 
           <Flex alignItems={"center"}>
