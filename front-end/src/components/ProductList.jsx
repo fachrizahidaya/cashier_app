@@ -57,6 +57,7 @@ export const ProductList = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [state, setState] = useState(0);
   const dispatch = useDispatch();
+  const dispatch1 = useDispatch();
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure();
   const OverlayOne = () => <ModalOverlay />;
   const [overlay, setOverlay] = useState(<OverlayOne />);
@@ -93,6 +94,9 @@ export const ProductList = () => {
       console.log(result.data.result);
       console.log(result.data.result[0]?.Product_Categories[0]?.Category?.id);
       dispatch(syncData(result.data.result));
+      // dispatch1(
+      //   syncData(result.data.result[0]?.Product_Categories[0]?.Category?.id)
+      // );
       setTotalPage(Math.ceil(result.data.totalRows / result.data.limit));
       setState(result.data);
     } catch (err) {
@@ -249,6 +253,26 @@ export const ProductList = () => {
                   >
                     <option value="ASC">Low to High</option>
                     <option value="DESC">High to Low</option>
+                  </Select>
+                </FormControl>
+                <FormControl w="" m={1}>
+                  <FormLabel fontSize="x-small" color="#285430">
+                    Sort by Category
+                  </FormLabel>
+                  <Select
+                    color={"#285430"}
+                    borderColor="#285430"
+                    // onChange={(event) => {
+                    //   fetchSort1(event.target.value);
+                    // }}
+                  >
+                    {/* {data?.map((item) => {
+                      return (
+                        <option>
+                          {item?.Product_Categories?.Category.name}
+                        </option>
+                      );
+                    })} */}
                   </Select>
                 </FormControl>
                 <FormControl w="" m={1}>

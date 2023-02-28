@@ -1,5 +1,7 @@
+import { ArrowRightIcon, Icon } from "@chakra-ui/icons";
 import {
   Flex,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -33,12 +35,16 @@ export const AdminReport = () => {
   return (
     <div>
       <Flex>
+        <Input w={"auto"} type={"date"}></Input>
+        <ArrowRightIcon />
+        <Input w={"auto"} type={"date"}></Input>
+      </Flex>
+      <Flex>
         <TableContainer m={"auto"} maxW={"80%"}>
           <Table size="md">
             <Thead>
               <Tr>
                 <Th>Date</Th>
-
                 <Th>Total</Th>
               </Tr>
             </Thead>
