@@ -1,5 +1,6 @@
 const db = require("../models");
 const item = db.Item;
+const { Op } = require("sequelize");
 const category = db.Category;
 const productCategory = db.Product_Category;
 const cart = db.Cart;
@@ -169,6 +170,47 @@ module.exports = {
       });
       const data = await item.findAll({});
       res.status(400).send("Category deleted");
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  },
+
+  paginationProduct: async (req, res) => {
+    try {
+      const { page, limit, search_query, order, sort } = req.query;
+      const list_page = parseInt(page) || 0;
+      const list_limit = parseInt(limit) || 5;
+      const search = search_query || "";
+      const offset = list_limit * list_page;
+      const orderby = order || "name";
+      const direction = sort || "ASC";
+      const totalRows = await item.count({
+        where: {
+          name: {
+            [Op.like]: "%" + search + "%",
+          },
+        },
+      });
+      const totalPage = Math.ceil(totalRows / limit);
+      const result = await item.findAll({
+        where: {
+          name: {
+            [Op.like]: "%" + search + "%",
+          },
+        },
+        offset: offset,
+        limit: list_limit,
+        order: [[orderby, direction]],
+      });
+
+      res.status(200).send({
+        result: result,
+        page: list_page,
+        limit: list_limit,
+        totalRows: totalRows,
+        totalPage: totalPage,
+      });
     } catch (err) {
       console.log(err);
       res.status(400).send(err);
