@@ -1,10 +1,8 @@
 import {
   Box,
   Button,
-  Center,
   FormControl,
   FormLabel,
-  Heading,
   HStack,
   Input,
   InputGroup,
@@ -18,7 +16,6 @@ import {
   ModalOverlay,
   Select,
   Stack,
-  Text,
   Textarea,
   useColorModeValue,
   useDisclosure,
@@ -48,7 +45,7 @@ export const ItemComp = () => {
         `http://localhost:2000/item/product`,
         product
       );
-      setTimeout(() => window.location.replace("/adminHome"), 2000);
+      setTimeout(() => window.location.replace("/admin-home"), 2000);
     } catch (err) {
       console.log(err);
     }

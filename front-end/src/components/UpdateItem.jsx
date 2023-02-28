@@ -7,18 +7,9 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   Select,
   Stack,
-  Text,
-  Textarea,
   useColorModeValue,
-  useDisclosure,
 } from "@chakra-ui/react";
 import Axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
@@ -27,7 +18,6 @@ import Swal from "sweetalert2";
 export const UpdateItem = ({ data }) => {
   const [data2, setData2] = useState();
   const [data3, setData3] = useState();
-  const { onClose, onOpen, isOpen } = useDisclosure();
   const inputName = useRef("");
   const inputPrice = useRef(0);
   const inputDescription = useRef("");
@@ -45,12 +35,12 @@ export const UpdateItem = ({ data }) => {
         `http://localhost:2000/item/edit/${id}`,
         update
       );
-    //   Swal.fire({
-    //     icon: "success",
-    //     text: "Product Updated",
-    //     width: "370px",
-    //   });
-      setTimeout(() => window.location.replace("/adminHome"), 900);
+      //   Swal.fire({
+      //     icon: "success",
+      //     text: "Product Updated",
+      //     width: "370px",
+      //   });
+      setTimeout(() => window.location.replace("/admin-home"), 900);
     } catch (err) {
       console.log(err);
     }

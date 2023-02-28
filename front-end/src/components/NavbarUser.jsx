@@ -13,8 +13,6 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
-  Stack,
-  Text,
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -28,23 +26,6 @@ export const NavbarUser = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const Links = ["Dashboard", "Projects", "Team"];
-
-  const NavLink = ({ children }) => (
-    <Link
-      px={2}
-      py={1}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      href={"#"}
-    >
-      {children}
-    </Link>
-  );
 
   const onLogout = () => {
     dispatch(logoutUser());
@@ -119,16 +100,6 @@ export const NavbarUser = () => {
             </Menu>
           </Flex>
         </Flex>
-
-        {/* {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : null} */}
       </Box>
     </div>
   );

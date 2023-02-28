@@ -1,18 +1,12 @@
 import {
-  Box,
   Button,
-  ButtonGroup,
   Card,
   CardBody,
   CardFooter,
   Divider,
-  Flex,
-  Grid,
-  Heading,
   Image,
   Stack,
   Text,
-  useColorModeValue,
   Wrap,
 } from "@chakra-ui/react";
 import Axios from "axios";

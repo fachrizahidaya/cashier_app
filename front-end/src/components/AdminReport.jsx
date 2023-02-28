@@ -4,7 +4,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
@@ -39,7 +38,7 @@ export const AdminReport = () => {
             <Thead>
               <Tr>
                 <Th>Date</Th>
-                
+
                 <Th>Total</Th>
               </Tr>
             </Thead>
@@ -54,7 +53,7 @@ export const AdminReport = () => {
                         year: "numeric",
                       })}
                     </Td>
-                   
+
                     <Td>
                       {new Intl.NumberFormat("IND", {
                         style: "currency",

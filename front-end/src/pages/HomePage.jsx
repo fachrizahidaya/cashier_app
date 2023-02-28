@@ -1,36 +1,5 @@
 import React from "react";
-import FooterComp from "../components/FooterComp";
-import {
-  Box,
-  Flex,
-  Avatar,
-  HStack,
-  Link,
-  IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
-  Card,
-  CardHeader,
-  Heading,
-  Text,
-  CardBody,
-  Image,
-  CardFooter,
-  SimpleGrid,
-  Center,
-  Divider,
-} from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../redux/userSlice";
+import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import { NavbarUser } from "../components/NavbarUser";
 import { CategorySidebar } from "../components/CategorySidebar";
 import { TransactionSidebar } from "../components/TransactionSidebar";

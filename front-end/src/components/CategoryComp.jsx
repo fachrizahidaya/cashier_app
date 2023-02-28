@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import {
   Box,
   Button,
-  Center,
   FormControl,
   FormLabel,
   HStack,
@@ -14,7 +13,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Select,
   Stack,
   useColorModeValue,
   useDisclosure,
@@ -34,7 +32,7 @@ export const CategoryComp = () => {
         `http://localhost:2000/item/category`,
         data
       );
-      setTimeout(() => window.location.replace("/adminHome"), 2000);
+      setTimeout(() => window.location.replace("/admin-home"), 2000);
     } catch (err) {
       console.log(err);
     }

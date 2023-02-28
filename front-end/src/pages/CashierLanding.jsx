@@ -4,7 +4,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
   Link,
   Button,
@@ -14,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import FooterComp from "../components/FooterComp";
 import Axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../redux/userSlice";
@@ -22,8 +21,6 @@ import Swal from "sweetalert2";
 const url = `http://localhost:2000/user/login`;
 
 export const CashierLanding = () => {
-  const { username } = useSelector((state) => state.userSlice.value);
-  const tokenLocalStorage = localStorage.getItem("tokenUser");
   const dispatch = useDispatch();
   const inputUsername = useRef("");
   const inputPass = useRef("");

@@ -2,7 +2,6 @@ import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { ListComp } from "../components/ListComp";
 import { ListSidebar } from "../components/ListSidebar";
-import { MenuUser } from "../components/MenuComp";
 import { NavbarUser } from "../components/NavbarUser";
 
 export const TransactionList = () => {

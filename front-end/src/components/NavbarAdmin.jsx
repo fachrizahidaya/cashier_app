@@ -14,7 +14,6 @@ import {
   MenuItem,
   MenuList,
   Stack,
-  Text,
   useColorMode,
   useColorModeValue,
   useDisclosure,
@@ -31,7 +30,6 @@ export default function NavbarAdmin() {
   const navigate = useNavigate();
   const { username } = useSelector((state) => state.adminSlice.value);
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onLogout = () => {
     dispatch(logoutAdmin());
@@ -46,21 +44,6 @@ export default function NavbarAdmin() {
   const toTransaction = () => {
     navigate("/admin-transaction");
   };
-
-  const NavLink = ({ children }) => (
-    <Link
-      px={2}
-      py={1}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      href={"#"}
-    >
-      {children}
-    </Link>
-  );
 
   return (
     <>

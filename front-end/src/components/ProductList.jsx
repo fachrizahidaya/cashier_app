@@ -1,6 +1,5 @@
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Button,
   ButtonGroup,
   Flex,
@@ -11,7 +10,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
   Table,
   TableContainer,
@@ -73,7 +71,7 @@ export const ProductList = () => {
 
     setImage2(resultImage.data.picture);
     setImage({ images: "" });
-    window.location.replace("/adminHome");
+    window.location.replace("/admin-home");
   };
 
   const onDelete = async (id) => {

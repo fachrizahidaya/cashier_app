@@ -1,15 +1,12 @@
 import {
   Box,
   Button,
-  Checkbox,
   Flex,
   FormLabel,
   Grid,
   GridItem,
   HStack,
-  Image,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";

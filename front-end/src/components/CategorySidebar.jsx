@@ -1,4 +1,4 @@
-import { Box, Button, FormLabel, Heading, Stack, Text } from "@chakra-ui/react";
+import { Button, FormLabel, Stack } from "@chakra-ui/react";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 

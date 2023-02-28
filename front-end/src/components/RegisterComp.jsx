@@ -25,7 +25,7 @@ const url = `http://localhost:2000/user/register`;
 
 export const RegisterComp = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const dispatch = useDispatch();
+
   const registerSchema = Yup.object().shape({
     username: Yup.string().required(),
     email: Yup.string().email().required(),

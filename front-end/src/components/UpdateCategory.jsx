@@ -22,7 +22,7 @@ export const UpdateCategory = ({ data }) => {
         `http://localhost:2000/item/editCategory/${id}`,
         data
       );
-      setTimeout(() => window.location.replace("/adminHome"), 900);
+      setTimeout(() => window.location.replace("/admin-home"), 900);
     } catch (err) {
       console.log(err);
     }

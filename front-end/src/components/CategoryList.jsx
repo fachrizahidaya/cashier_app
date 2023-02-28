@@ -1,6 +1,5 @@
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Button,
   Flex,
   HStack,
@@ -28,8 +27,7 @@ export const CategoryList = () => {
   const [edit, setEdit] = useState({});
   const OverlayOne = () => <ModalOverlay />;
   const [overlay, setOverlay] = useState(<OverlayOne />);
-  const {isOpen, onClose, onOpen, onToggle} = useDisclosure()
-  const inputName = useRef("")
+  const { isOpen, onClose, onOpen, onToggle } = useDisclosure();
 
   const getAll = async () => {
     try {
@@ -64,7 +62,6 @@ export const CategoryList = () => {
             <Thead>
               <Tr>
                 <Th>Category</Th>
-
                 <Th>Action</Th>
               </Tr>
             </Thead>
