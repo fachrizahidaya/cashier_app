@@ -43,14 +43,16 @@ import * as Yup from "yup";
 
 export const ProductList = () => {
   const [data2, setData2] = useState([]);
-  const data = useSelector((state) => state.itemSlice.value)
+  const data = useSelector((state) => state.itemSlice.value);
   const [image, setImage] = useState("");
   const [edit, setEdit] = useState({});
   const [image2, setImage2] = useState("upload");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(3);
   const [sort, setSort] = useState("ASC");
+  const [sort1, setSort1] = useState("ASC");
   const [order, setOrder] = useState("name");
+  const [order1, setOrder1] = useState("price");
   const [searchProduct, setSearchProduct] = useState("");
   const [totalPage, setTotalPage] = useState(0);
   const [state, setState] = useState(0);
@@ -84,9 +86,12 @@ export const ProductList = () => {
           page - 1
         }&limit=${limit}&order=${order ? order : "name"}&sort=${
           sort ? sort : "ASC"
+        }&orderPrice=${order1 ? order1 : "price"}&sortPrice=${
+          sort1 ? sort1 : "ASC"
         }`
       );
-      console.log(result.data);
+      console.log(result.data.result);
+      console.log(result.data.result[0]?.Product_Categories[0]?.Category?.id);
       dispatch(syncData(result.data.result));
       setTotalPage(Math.ceil(result.data.totalRows / result.data.limit));
       setState(result.data);
@@ -97,7 +102,7 @@ export const ProductList = () => {
 
   useEffect(() => {
     getData();
-  }, [searchProduct, page, limit, sort]);
+  }, [searchProduct, page, limit, sort, sort1]);
 
   async function fetchSort(filter) {
     setSort(filter);
@@ -105,6 +110,14 @@ export const ProductList = () => {
 
   useEffect(() => {
     fetchSort();
+  }, []);
+
+  async function fetchSort1(filter1) {
+    setSort1(filter1);
+  }
+
+  useEffect(() => {
+    fetchSort1();
   }, []);
 
   const formik = useFormik({
@@ -150,6 +163,14 @@ export const ProductList = () => {
         `http://localhost:2000/item/remove/${id}`
       );
       getAll();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getByCategory = async () => {
+    try {
+      const result = await Axios.get(`http://localhost:2000/item/byCategory`);
     } catch (err) {
       console.log(err);
     }
@@ -213,6 +234,21 @@ export const ProductList = () => {
                   >
                     <option value="ASC">A-Z</option>
                     <option value="DESC">Z-A</option>
+                  </Select>
+                </FormControl>
+                <FormControl w="" m={1}>
+                  <FormLabel fontSize="x-small" color="#285430">
+                    Sort by Price
+                  </FormLabel>
+                  <Select
+                    color={"#285430"}
+                    borderColor="#285430"
+                    onChange={(event) => {
+                      fetchSort1(event.target.value);
+                    }}
+                  >
+                    <option value="ASC">Low to High</option>
+                    <option value="DESC">High to Low</option>
                   </Select>
                 </FormControl>
                 <FormControl w="" m={1}>

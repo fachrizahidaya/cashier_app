@@ -178,19 +178,23 @@ module.exports = {
 
   paginationProduct: async (req, res) => {
     try {
-      const { page, limit, search_query, order, sort } = req.query;
+      const { page, limit, search_query, order, sort, orderPrice, sortPrice } =
+        req.query;
       const list_page = parseInt(page) || 0;
       const list_limit = parseInt(limit) || 5;
       const search = search_query || "";
       const offset = list_limit * list_page;
       const orderby = order || "name";
+      const orderby2 = orderPrice || "price";
       const direction = sort || "ASC";
+      const direction2 = sortPrice || "ASC";
       const totalRows = await item.count({
         where: {
           name: {
             [Op.like]: "%" + search + "%",
           },
         },
+        include: [{ model: productCategory, include: [{ model: category }] }],
       });
       const totalPage = Math.ceil(totalRows / limit);
       const result = await item.findAll({
@@ -199,9 +203,11 @@ module.exports = {
             [Op.like]: "%" + search + "%",
           },
         },
+        include: [{ model: productCategory, include: [{ model: category }] }],
         offset: offset,
         limit: list_limit,
         order: [[orderby, direction]],
+        orderPrice: [[orderby2, direction2]],
       });
 
       res.status(200).send({
@@ -211,6 +217,30 @@ module.exports = {
         totalRows: totalRows,
         totalPage: totalPage,
       });
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  },
+
+  findByCategory: async (req, res) => {
+    try {
+      const { name } = req.body;
+      const response = await category.findAll({
+        where: {
+          id: req.params.id,
+        },
+        attributes: ["id", "name"],
+        include: [
+          {
+            model: productCategory,
+            attributes: ["CategoryId"],
+            include: [{ model: item, attributes: ["name"] }],
+          },
+        ],
+      });
+      console.log(response);
+      res.status(200).send(response);
     } catch (err) {
       console.log(err);
       res.status(400).send(err);
