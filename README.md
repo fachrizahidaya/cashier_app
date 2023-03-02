@@ -1,6 +1,6 @@
 # Cashier App
 
-This is monorepo contain frontend project using ReactJS and backend project using ExpressJS.
+Cashier app that allows Admin can register cashier to make a transaction. This is monorepo contain frontend project using ReactJS and backend project using ExpressJS.
 
 ## Available Scripts
 
@@ -12,7 +12,7 @@ Runs the app in the development mode.
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-For API, you can access it in [http://localhost:8000/api](http://localhost:8000/api).
+For API, you can access it in [http://localhost:2000/api](http://localhost:2000/api).
 
 The page will reload if you make edits.
 
