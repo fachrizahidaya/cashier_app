@@ -184,12 +184,15 @@ module.exports = {
       const list_limit = parseInt(limit) || 5;
       const search = search_query || "";
       const offset = list_limit * list_page;
-      const orderby = order || "name";
+      const orderby = order || "price" || "name";
       const orderby2 = orderPrice || "price";
       const direction = sort || "ASC";
       const direction2 = sortPrice || "ASC";
       const totalRows = await item.count({
         where: {
+          price: {
+            [Op.like]: "%" + search + "%",
+          },
           name: {
             [Op.like]: "%" + search + "%",
           },
@@ -199,6 +202,9 @@ module.exports = {
       const totalPage = Math.ceil(totalRows / limit);
       const result = await item.findAll({
         where: {
+          price: {
+            [Op.like]: "%" + search + "%",
+          },
           name: {
             [Op.like]: "%" + search + "%",
           },

@@ -103,7 +103,7 @@ export const ProductList = () => {
         }&limit=${limit}&order=${order ? order : "name"}&sort=${
           sort ? sort : "ASC"
         }&orderPrice=${order1 ? order1 : "price"}&sortPrice=${
-          sort1 ? sort1 : "ASC"
+          sort ? sort : "ASC"
         }`
       );
       console.log(result.data.result);
@@ -250,6 +250,8 @@ export const ProductList = () => {
                   >
                     <option value="ASC">A-Z</option>
                     <option value="DESC">Z-A</option>
+                    <option value="ASC">Low to High</option>
+                    <option value="DESC">High to Low</option>
                   </Select>
                 </FormControl>
                 <FormControl w="" m={1}>

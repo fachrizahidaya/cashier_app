@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 const db = require("../models");
 const cart = db.Cart;
 const transaction = db.Transaction;
@@ -246,6 +246,41 @@ module.exports = {
       });
       console.log(data);
       res.status(200).send(data);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  },
+
+  transactionRange: async (req, res) => {
+    try {
+      const { date1, date2 } = req.body;
+      const data = await transaction.findAll({
+        attributes: [
+          "createdAt",
+          [Sequelize.fn("sum", Sequelize.col("totalOrder")), "total"],
+        ],
+        group: ["createdAt"],
+        // raw: true,
+      });
+      console.log(data);
+      const salesTotal = data.map((item) => item.dataValues.createdAt);
+      console.log(salesTotal);
+
+      const response = await transaction.findAll(
+        {
+          attributes: [
+            [Sequelize.fn("sum", Sequelize.col("totalOrder")), "total"],
+          ],
+          where: {
+            createdAt: {
+              [Op.between]: ["2023-02-26", "2023-03-04"],
+            },
+          },
+        },
+        {}
+      );
+      res.status(200).send(response);
     } catch (err) {
       console.log(err);
       res.status(400).send(err);

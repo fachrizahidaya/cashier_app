@@ -11,6 +11,7 @@ router.get("/findCheckout/:id", transactionControllers.findCheckoutByUser);
 router.get("/findBy/:id", transactionControllers.findCartByUser);
 router.get("/findTotal/:id", transactionControllers.findTotalByUser);
 router.get("/findOrder/:id", transactionControllers.findOrderByUser);
+router.get("/byRange", transactionControllers.transactionRange)
 router.delete("/remove/:id", transactionControllers.delete);
 
 module.exports = router;
