@@ -43,6 +43,7 @@ import * as Yup from "yup";
 
 export const ProductList = () => {
   const [data2, setData2] = useState([]);
+  const [data3, setData3] = useState([]);
   const data = useSelector((state) => state.itemSlice.value);
   const [image, setImage] = useState("");
   const [edit, setEdit] = useState({});
@@ -80,6 +81,20 @@ export const ProductList = () => {
     getAll();
   }, [edit]);
 
+  const getCategory = async () => {
+    try {
+      const result = await Axios.get(`http://localhost:2000/item/category`);
+      console.log(result.data);
+      setData3(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
   const getData = async () => {
     try {
       const result = await Axios.get(
@@ -94,9 +109,6 @@ export const ProductList = () => {
       console.log(result.data.result);
       console.log(result.data.result[0]?.Product_Categories[0]?.Category?.id);
       dispatch(syncData(result.data.result));
-      // dispatch1(
-      //   syncData(result.data.result[0]?.Product_Categories[0]?.Category?.id)
-      // );
       setTotalPage(Math.ceil(result.data.totalRows / result.data.limit));
       setState(result.data);
     } catch (err) {
@@ -262,17 +274,14 @@ export const ProductList = () => {
                   <Select
                     color={"#285430"}
                     borderColor="#285430"
+                    placeholder="Select category"
                     // onChange={(event) => {
                     //   fetchSort1(event.target.value);
                     // }}
                   >
-                    {/* {data?.map((item) => {
-                      return (
-                        <option>
-                          {item?.Product_Categories?.Category.name}
-                        </option>
-                      );
-                    })} */}
+                    {data3?.map((item) => {
+                      return <option>{item.name}</option>;
+                    })}
                   </Select>
                 </FormControl>
                 <FormControl w="" m={1}>
