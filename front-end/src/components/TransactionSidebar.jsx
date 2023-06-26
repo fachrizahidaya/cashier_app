@@ -121,8 +121,10 @@ export const TransactionSidebar = () => {
           }).format(data2)}
         </FormLabel>
       </Flex>
-      <Button onClick={onSave}>Save</Button>
-      <Button>Print</Button>
+      <HStack>
+        <Button onClick={onSave}>Save</Button>
+        <Button>Print</Button>
+      </HStack>
       <Button onClick={() => onCreate()} w={"full"}>
         Pay
       </Button>
