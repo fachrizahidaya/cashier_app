@@ -98,6 +98,18 @@ export const TransactionSidebar = () => {
     }
   };
 
+  const onSave = () => {
+    try {
+      Swal.fire({
+        icon: "success",
+        text: `Saved`,
+        timer: 2000,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Flex justifyContent={"space-between"}>
@@ -109,6 +121,8 @@ export const TransactionSidebar = () => {
           }).format(data2)}
         </FormLabel>
       </Flex>
+      <Button onClick={onSave}>Save</Button>
+      <Button>Print</Button>
       <Button onClick={() => onCreate()} w={"full"}>
         Pay
       </Button>
