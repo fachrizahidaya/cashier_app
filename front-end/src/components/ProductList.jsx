@@ -170,7 +170,7 @@ export const ProductList = () => {
 
     setImage2(resultImage.data.picture);
     setImage({ images: "" });
-    window.location.replace("/admin-home");
+    window.location.replace("/admin");
   };
 
   const onDelete = async (id) => {

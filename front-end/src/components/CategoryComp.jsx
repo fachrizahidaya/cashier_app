@@ -32,7 +32,7 @@ export const CategoryComp = () => {
         `http://localhost:2000/item/category`,
         data
       );
-      setTimeout(() => window.location.replace("/admin-home"), 2000);
+      setTimeout(() => window.location.replace("/admin"), 2000);
     } catch (err) {
       console.log(err);
     }

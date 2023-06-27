@@ -70,11 +70,11 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<CashierLanding />}></Route>
-        <Route path="/home" element={<HomePage />}></Route>
+        <Route path="/" element={<HomePage />}></Route>
+        {/* <Route path="/home" element={<HomePage />}></Route> */}
         <Route path="/list" element={<TransactionList />}></Route>
-        <Route path="/admin" element={<AdminLandingPage />}></Route>
-        <Route path="/admin-home" element={<AdminPage />}></Route>
+        <Route path="/admin" element={<AdminPage />}></Route>
+        {/* <Route path="/admin-home" element={<AdminPage />}></Route> */}
         <Route path="/admin-transaction" element={<AdminTransaction />}></Route>
       </Routes>
     </div>

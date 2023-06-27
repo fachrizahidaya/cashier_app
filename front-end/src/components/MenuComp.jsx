@@ -39,7 +39,7 @@ export const MenuUser = () => {
   const onCreate = async (ItemId) => {
     try {
       const create = {
-        UserId: id,
+        // UserId: id,
         ItemId,
       };
       const result = await Axios.post(

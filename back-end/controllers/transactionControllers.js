@@ -8,12 +8,15 @@ const transactionDetail = db.Transaction_Detail;
 module.exports = {
   create: async (req, res) => {
     try {
-      const { ItemId, UserId } = req.body;
-      if (!UserId) throw `You have to login first`;
+      const {
+        ItemId,
+        // UserId
+      } = req.body;
+      // if (!UserId) throw `You have to login first`;
       const data = await cart.create(
         {
           ItemId,
-          UserId,
+          // UserId,
           qty: 1,
         }
         // {
